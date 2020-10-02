@@ -7,6 +7,11 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+        src/settings.cpp \
+        src/ai.cpp \
+        src/gamecontrol.cpp \
+        src/player.cpp \
+        src/playerhandler.cpp \
         src/cards.cpp \
         main.cpp
 
@@ -26,4 +31,9 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 INCLUDEPATH += $$PWD/include
 
 HEADERS += \
-    include/cards.h
+    include/ai.h \
+    include/cards.h \
+    include/gamecontrol.h \
+    include/player.h \
+    include/playerhandler.h \
+    include/settings.h
