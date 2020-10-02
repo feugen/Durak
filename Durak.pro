@@ -32,6 +32,7 @@ INCLUDEPATH += $$PWD/include
 
 HEADERS += \
     include/ai.h \
+    include/base.h \
     include/cards.h \
     include/gamecontrol.h \
     include/player.h \
