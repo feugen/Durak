@@ -26,15 +26,14 @@ int main(int argc, char *argv[])
     Ai ai;
     Cards cards;
     GameControl gameControl;
-    Player player;
-    PlayerHandler playerHandler;
     Settings settings;
+
+    qmlRegisterType<Player>("com.example", 1, 0, "Player");
+    qmlRegisterType<PlayerHandler>("com.example", 1, 0, "PlayerHandler");
 
     engine.rootContext()->setContextProperty("Ai", &ai);
     engine.rootContext()->setContextProperty("Cards", &cards);
     engine.rootContext()->setContextProperty("GameControl", &gameControl);
-    engine.rootContext()->setContextProperty("Player", &player);
-    engine.rootContext()->setContextProperty("PlayerHandler", &playerHandler);
     engine.rootContext()->setContextProperty("Settings", &settings);
 
     engine.load(url);

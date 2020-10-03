@@ -36,6 +36,10 @@ public:
     struct Card{
         eRank rank;
         eSuit suit;
+        bool operator==(const Card& data)
+        {
+            return this->rank == data.rank && this->suit == data.suit;
+        }
     };
 
 };
