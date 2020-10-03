@@ -8,25 +8,39 @@ Window {
     width: 640
     height: 480
     visible: true
-    title: qsTr("Hello World")
+    title: qsTr("Durak")
 
     Rectangle{
         anchors{
             top: parent.top
             topMargin: 10
             left: parent.left
-            leftMargin: (parent.width - layoutItem.width)/2
+            leftMargin: (parent.width - layoutItemTop.width)/2
         }
 
         RowLayout{
-            id: layoutItem
+            id: layoutItemTop
             Menu{
                 id: menuItem
-                width: 600
             }
             Info{
                 id: infoItem
                 width: 200
+            }
+        }
+    }
+
+    Rectangle{
+        anchors{
+            bottom: parent.bottom
+            bottomMargin: 10 + layoutItemBottom.height
+            left: parent.left
+            leftMargin: (parent.width - layoutItemBottom.width)/2
+        }
+        RowLayout{
+            id: layoutItemBottom
+            TurnControl{
+                id: controllItem
             }
         }
     }
