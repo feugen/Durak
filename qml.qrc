@@ -1,6 +1,8 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
+        <file>src/qml/Menu.qml</file>
+        <file>src/qml/Info.qml</file>
     </qresource>
     <qresource prefix="/cards">
         <file>data/cards/2C.png</file>
