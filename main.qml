@@ -33,6 +33,22 @@ Window {
     Rectangle{
         anchors{
             bottom: parent.bottom
+            bottomMargin: menuRectangle.height + menuRectangle.anchors.bottomMargin + layoutItemCardArea.height + 10
+            left: parent.left
+            leftMargin: (parent.width - layoutItemCardArea.width)/2
+        }
+        RowLayout{
+            id: layoutItemCardArea
+            CardArea{
+                id: cardAreaItem
+            }
+        }
+    }
+
+    Rectangle{
+        id: menuRectangle
+        anchors{
+            bottom: parent.bottom
             bottomMargin: 10 + layoutItemBottom.height
             left: parent.left
             leftMargin: (parent.width - layoutItemBottom.width)/2
