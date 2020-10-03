@@ -1,17 +1,17 @@
-#include "cards.h"
+#include "stack.h"
 #include <QMetaEnum>
 
 #include <algorithm>
 #include <random>
 
-Cards::Cards(QObject *parent) : QObject(parent)
+Stack::Stack(QObject *parent) : QObject(parent)
 {
-    createCards();
-    shuffleCards();
+    createStack();
+    shuffleStack();
     setTrump();
 }
 
-void Cards::createCards()
+void Stack::createStack()
 {
     const QMetaEnum rank = QMetaEnum::fromType<Base::eRank>();
     const QMetaEnum suit = QMetaEnum::fromType<Base::eSuit>();
@@ -30,25 +30,25 @@ void Cards::createCards()
     }
 }
 
-void Cards::shuffleCards()
+void Stack::shuffleStack()
 {
     auto rd = std::random_device {};
     auto rng = std::default_random_engine { rd() };
     std::shuffle(std::begin(m_cards), std::end(m_cards), rng);
 }
 
-void Cards::setTrump()
+void Stack::setTrump()
 {
     std::rotate(m_cards.rbegin(), m_cards.rbegin() + 1, m_cards.rend());
     m_trump = m_cards.at(0).suit;
 }
 
-Base::eSuit Cards::getTrump() const
+Base::eSuit Stack::getTrump() const
 {
     return m_trump;
 }
 
-std::vector<Base::Card> Cards::getTopCards(uint numberOfCards)
+std::vector<Base::Card> Stack::getTopCards(uint numberOfCards)
 {
     if(m_cards.size() < numberOfCards) return {};
 

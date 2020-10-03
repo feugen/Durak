@@ -1,9 +1,11 @@
 #include "ai.h"
-#include "cards.h"
+#include "stack.h"
 #include "gamecontrol.h"
 #include "player.h"
 #include "playerhandler.h"
 #include "settings.h"
+#include "table.h"
+#include "playingfield.h"
 
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
@@ -24,9 +26,11 @@ int main(int argc, char *argv[])
     }, Qt::QueuedConnection);
 
     Ai ai;
-    Cards cards;
+    Stack cards;
     GameControl gameControl;
     Settings settings;
+    Table table;
+    PlayingField plyingField;
 
     qmlRegisterType<Player>("com.example", 1, 0, "Player");
     qmlRegisterType<PlayerHandler>("com.example", 1, 0, "PlayerHandler");
@@ -35,6 +39,8 @@ int main(int argc, char *argv[])
     engine.rootContext()->setContextProperty("Cards", &cards);
     engine.rootContext()->setContextProperty("GameControl", &gameControl);
     engine.rootContext()->setContextProperty("Settings", &settings);
+    engine.rootContext()->setContextProperty("Table", &table);
+    engine.rootContext()->setContextProperty("PlayingField", &plyingField);
 
     engine.load(url);
 

@@ -12,6 +12,11 @@ void Player::setCards(std::vector<Base::Card> cards)
     m_numberOfCards = m_cards.size();
 }
 
+std::vector<Base::Card> Player::getCards() const
+{
+    return m_cards;
+}
+
 void Player::moveCard(const Base::Card& card)
 {
     std::vector<Base::Card>::iterator it = std::find(m_cards.begin(), m_cards.end(), card);

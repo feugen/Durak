@@ -12,6 +12,7 @@ public:
     explicit Player(uint playerId, QObject *parent = nullptr);
 
     void setCards(std::vector<Base::Card> cards);
+    std::vector<Base::Card> getCards() const;
     void moveCard(const Base::Card &card);
     void setWin();
     void setLose();

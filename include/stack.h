@@ -1,14 +1,14 @@
-#ifndef CARDS_H
-#define CARDS_H
+#ifndef STACK_H
+#define STACK_H
 
 #include "base.h"
 #include <QObject>
 
-class Cards : public QObject
+class Stack : public QObject
 {
     Q_OBJECT
 public:
-    explicit Cards(QObject *parent = nullptr);
+    explicit Stack(QObject *parent = nullptr);
 
     Base::eSuit getTrump() const;
     std::vector<Base::Card> getTopCards(uint numberOfCards);
@@ -16,8 +16,8 @@ public:
 signals:
 
 private:
-    void createCards();
-    void shuffleCards();
+    void createStack();
+    void shuffleStack();
     void setTrump();
 
 private:
@@ -27,4 +27,4 @@ private:
 
 
 
-#endif // CARDS_H
+#endif // STACK_H

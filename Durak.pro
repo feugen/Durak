@@ -7,13 +7,15 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+        src/playingfield.cpp \
+        src/table.cpp \
         src/settings.cpp \
         src/ai.cpp \
         src/gamecontrol.cpp \
         src/player.cpp \
         src/playerhandler.cpp \
-        src/cards.cpp \
-        main.cpp
+        main.cpp \
+        src/stack.cpp
 
 RESOURCES += qml.qrc
 
@@ -33,8 +35,10 @@ INCLUDEPATH += $$PWD/include
 HEADERS += \
     include/ai.h \
     include/base.h \
-    include/cards.h \
     include/gamecontrol.h \
     include/player.h \
     include/playerhandler.h \
-    include/settings.h
+    include/playingfield.h \
+    include/settings.h \
+    include/stack.h \
+    include/table.h
