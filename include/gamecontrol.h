@@ -17,7 +17,7 @@ public:
     Q_PROPERTY(QVariant playerCount WRITE setPlayerCount NOTIFY playerCountChanged)
     Q_PROPERTY(QVariant difficultyLevel WRITE setDifficultyLevel NOTIFY difficultyLevelChanged)
 
-    Q_INVOKABLE void startGame();
+    Q_INVOKABLE void startGame(bool gameState);
 
     uint getPlayerCount() const;
     QString getDifficultyLevel() const;

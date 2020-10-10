@@ -14,7 +14,7 @@ Rectangle{
 
     signal difficultyChanged(string value)
     signal playerNumberChanged(string value)
-    signal startGame()
+    signal startGame(bool value)
 
     RowLayout{
         id: layoutItem
@@ -23,7 +23,6 @@ Rectangle{
             left: parent.left
             leftMargin: 4
         }
-
         Text{
             id: difficultyTextItem
             text: qsTr("Difficulty: ")
@@ -32,7 +31,7 @@ Rectangle{
             id: difficultyComboBox
             model: [ "Easy", "Medium", "Hard" ]
             style: ComboBoxStyle {
-                textColor: "black"
+                textColor: difficultyComboBox.enabled ? "black" : "grey"
             }
             onCurrentTextChanged: difficultyChanged(difficultyComboBox.currentText)
         }
@@ -44,21 +43,34 @@ Rectangle{
             id: numberOfPlayersComboBox
             model: [ 2, 3, 4 ]
             style: ComboBoxStyle {
-                textColor: "black"
+                textColor: numberOfPlayersComboBox.enabled ? "black" : "grey"
             }
             onCurrentTextChanged: playerNumberChanged(numberOfPlayersComboBox.currentText)
         }
         Button{
             id: startButton
             Layout.preferredWidth: 100
+            property bool gameRunning: false
             style: ButtonStyle{
                 label: Text {
                     color: "black"
-                    text: "Start game"
+                    text: startButton.gameRunning ? "Stop game" : "Start game"
                     horizontalAlignment: Text.AlignHCenter
                 }
             }
-            onClicked: startGame()
+            onClicked: {
+                if(gameRunning){
+                    startButton.gameRunning = false
+                    difficultyComboBox.enabled = true
+                    numberOfPlayersComboBox.enabled = true
+                }
+                else{
+                    startButton.gameRunning = true
+                    difficultyComboBox.enabled = false
+                    numberOfPlayersComboBox.enabled = false
+                }
+                startGame(gameRunning)
+            }
         }
     }
 }

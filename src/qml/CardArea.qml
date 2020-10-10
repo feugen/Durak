@@ -4,11 +4,13 @@ import QtQuick.Layouts 1.15
 Rectangle {
     id: cardArea
     width: layoutItem.width + (cardArea.border.width + layoutItem.anchors.leftMargin)*2
-    height: 160
+    height: 146
 
     color: "white"
     border.color: "black"
     border.width: 1
+
+    property bool human: false
 
     RowLayout{
         id: layoutItem
@@ -23,17 +25,19 @@ Rectangle {
             model: 6
             Rectangle{
                 id: rect
-                width: 100; height: 140
+                width: 94; height: 132
                 border.width: 1
                 border.color: "black"
+
+                //https://stackoverflow.com/questions/30981404/qml-drag-and-drop-free-positioning/30991733
+
                 Drag.active: mouseArea.drag.active
                 property point beginDrag
                 property bool caught: false
 
-                //https://stackoverflow.com/questions/30981404/qml-drag-and-drop-free-positioning/30991733
-
                 MouseArea{
                     id: mouseArea
+                    enabled: human
                     anchors.fill: parent
                     drag.target: parent
                     onPressed: {

@@ -31,7 +31,7 @@ void GameControl::setDifficultyLevel(QVariant difficultyLevel)
 }
 
 
-void GameControl::startGame()
+void GameControl::startGame(bool gameState)
 {
     const auto playerCount = m_pSettings->getPlayerCount();
     const auto difficultyLevel = m_pSettings->getDifficultyLevel();

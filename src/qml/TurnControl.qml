@@ -13,6 +13,8 @@ Rectangle {
     border.color: "black"
     border.width: 1
 
+    property bool gameIsRunning: false
+
     RowLayout{
         id: layoutItem
         anchors{
@@ -74,10 +76,11 @@ Rectangle {
         }
         Button{
             id: nextRound
+            enabled: gameIsRunning
             Layout.preferredWidth: 100
             style: ButtonStyle{
                 label: Text {
-                    color: "black"
+                    color: nextRound.enabled ? "black" : "grey"
                     text: qsTr("Next turn")
                     horizontalAlignment: Text.AlignHCenter
                 }
