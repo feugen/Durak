@@ -7,6 +7,7 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+        src/stepcontrol.cpp \
         src/playingfield.cpp \
         src/table.cpp \
         src/settings.cpp \
@@ -14,8 +15,8 @@ SOURCES += \
         src/gamecontrol.cpp \
         src/player.cpp \
         src/playerhandler.cpp \
-        main.cpp \
-        src/stack.cpp
+        src/stack.cpp \
+        main.cpp
 
 RESOURCES += qml.qrc
 
@@ -41,4 +42,5 @@ HEADERS += \
     include/playingfield.h \
     include/settings.h \
     include/stack.h \
+    include/stepcontrol.h \
     include/table.h

@@ -10,6 +10,14 @@ class Base
 
 public:
 
+    enum class eDifficulty
+    {
+        Easy = 0,
+        Medium = 1,
+        Hard = 2
+    };
+    Q_ENUM(eDifficulty)
+
     enum class eSuit
     {
         Diamond = 0,
@@ -41,7 +49,6 @@ public:
             return this->rank == data.rank && this->suit == data.suit;
         }
     };
-
 };
 
 Q_DECLARE_METATYPE(Base::eSuit)

@@ -10,18 +10,24 @@ Window {
     visible: true
     title: qsTr("Durak")
 
+    property var difficulty: "Easy"
+    property var numberOfPlayers: "2"
+
     Rectangle{
+        id: topMenu
         anchors{
             top: parent.top
             topMargin: 10
             left: parent.left
             leftMargin: (parent.width - layoutItemTop.width)/2
         }
-
         RowLayout{
             id: layoutItemTop
             Menu{
                 id: menuItem
+                onDifficultyChanged: difficulty = value
+                onPlayerNumberChanged: numberOfPlayers = value
+                onStartGame: GameControl.startGame()
             }
             Info{
                 id: infoItem
@@ -31,6 +37,7 @@ Window {
     }
 
     Rectangle{
+        id: player0
         anchors{
             bottom: parent.bottom
             bottomMargin: menuRectangle.height + menuRectangle.anchors.bottomMargin + layoutItemCardArea.height + 10

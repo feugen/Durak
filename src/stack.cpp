@@ -43,12 +43,17 @@ void Stack::setTrump()
     m_trump = m_cards.at(0).suit;
 }
 
+std::vector<Base::Card>& Stack::getCards()
+{
+    return m_cards;
+}
+
 Base::eSuit Stack::getTrump() const
 {
     return m_trump;
 }
 
-std::vector<Base::Card> Stack::getTopCards(uint numberOfCards)
+std::vector<Base::Card> Stack::takeTopCards(uint numberOfCards)
 {
     if(m_cards.size() < numberOfCards) return {};
 

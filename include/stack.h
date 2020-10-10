@@ -11,7 +11,8 @@ public:
     explicit Stack(QObject *parent = nullptr);
 
     Base::eSuit getTrump() const;
-    std::vector<Base::Card> getTopCards(uint numberOfCards);
+    std::vector<Base::Card> takeTopCards(uint numberOfCards);
+    std::vector<Base::Card>& getCards();
 
 signals:
 

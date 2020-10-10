@@ -12,6 +12,8 @@ public:
     explicit PlayerHandler() = default;
     explicit PlayerHandler(uint numberOfPlayers, QObject *parent = nullptr);
 
+    std::vector<std::unique_ptr<Player>>& getPlayerList();
+
 signals:
 
 private:

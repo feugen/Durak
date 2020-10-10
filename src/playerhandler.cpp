@@ -7,3 +7,8 @@ PlayerHandler::PlayerHandler(uint numberOfPlayers, QObject *parent) : QObject(pa
         m_playerList.push_back(std::make_unique<Player>(i));
     }
 }
+
+std::vector<std::unique_ptr<Player> > &PlayerHandler::getPlayerList()
+{
+    return m_playerList;
+}

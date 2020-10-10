@@ -12,6 +12,10 @@ Rectangle{
     border.color: "black"
     border.width: 1
 
+    signal difficultyChanged(string value)
+    signal playerNumberChanged(string value)
+    signal startGame()
+
     RowLayout{
         id: layoutItem
         anchors{
@@ -30,6 +34,7 @@ Rectangle{
             style: ComboBoxStyle {
                 textColor: "black"
             }
+            onCurrentTextChanged: difficultyChanged(difficultyComboBox.currentText)
         }
         Text{
             id: numberOfPlayersTextItem
@@ -41,6 +46,7 @@ Rectangle{
             style: ComboBoxStyle {
                 textColor: "black"
             }
+            onCurrentTextChanged: playerNumberChanged(numberOfPlayersComboBox.currentText)
         }
         Button{
             id: startButton
@@ -52,6 +58,7 @@ Rectangle{
                     horizontalAlignment: Text.AlignHCenter
                 }
             }
+            onClicked: startGame()
         }
     }
 }
