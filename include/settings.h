@@ -11,23 +11,14 @@ class Settings : public QObject
 public:
     explicit Settings(QObject *parent = nullptr);
 
-    Q_PROPERTY(QVariant playerCount READ getPlayerCount WRITE setPlayerCount NOTIFY playerCountChanged)
-    Q_PROPERTY(QVariant difficultyLevel READ getDifficultyLevel WRITE setDifficultyLevel NOTIFY difficultyLevelChanged)
-
-    QVariant getPlayerCount() const;
-    QVariant getDifficultyLevel() const;
-
-public slots:
-    void setPlayerCount(QVariant playersCount);
+    uint getPlayerCount() const;
+    QString getDifficultyLevel() const;
+    void setPlayerCount(QVariant playerCount);
     void setDifficultyLevel(QVariant difficultyLevel);
 
-signals:
-    void playerCountChanged(QVariant playersCount);
-    void difficultyLevelChanged(QVariant difficultyLevel);
-
 private:
-    QVariant m_playersCount;
-    QVariant m_difficultyLevel;
+    uint m_playerCount;
+    QString m_difficultyLevel;
 };
 
 #endif // SETTINGS_H

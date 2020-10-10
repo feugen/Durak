@@ -22,8 +22,8 @@ Window {
             id: layoutItemTop
             Menu{
                 id: menuItem
-                onDifficultyChanged: Settings.difficultyLevel = value
-                onPlayerNumberChanged: Settings.playerCount = value
+                onDifficultyChanged: GameControl.difficultyLevel = value
+                onPlayerNumberChanged: GameControl.playerCount = value
                 onStartGame: GameControl.startGame()
             }
             Info{

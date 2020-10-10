@@ -14,13 +14,27 @@ class GameControl : public QObject
 public:
     explicit GameControl(QObject *parent = nullptr);
 
+    Q_PROPERTY(QVariant playerCount WRITE setPlayerCount NOTIFY playerCountChanged)
+    Q_PROPERTY(QVariant difficultyLevel WRITE setDifficultyLevel NOTIFY difficultyLevelChanged)
+
     Q_INVOKABLE void startGame();
 
+    uint getPlayerCount() const;
+    QString getDifficultyLevel() const;
+
+public slots:
+    void setPlayerCount(QVariant playerCount);
+    void setDifficultyLevel(QVariant difficultyLevel);
+
+signals:
+    void playerCountChanged(QVariant playersCount);
+    void difficultyLevelChanged(QVariant difficultyLevel);
+
 private:
+    std::unique_ptr<Settings> m_pSettings = nullptr;
     std::unique_ptr<PlayerHandler> m_pPlayerHandler = nullptr;
+    std::unique_ptr<StepControl> m_pStepControl = nullptr;
     Table m_Table;
-    Settings m_Settings;
-    StepControl m_StepControl;
     Ai m_Ai;
 
 signals:

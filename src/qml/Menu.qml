@@ -42,7 +42,7 @@ Rectangle{
         }
         ComboBox{
             id: numberOfPlayersComboBox
-            model: [ "2", "3", "4" ]
+            model: [ 2, 3, 4 ]
             style: ComboBoxStyle {
                 textColor: "black"
             }

@@ -1,7 +1,4 @@
-
 #include "gamecontrol.h"
-#include "settings.h"
-#include "stepcontrol.h"
 
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
@@ -22,13 +19,7 @@ int main(int argc, char *argv[])
     }, Qt::QueuedConnection);
 
     GameControl gameControl;
-    StepControl stepControl;
-    Settings settings;
-
     engine.rootContext()->setContextProperty("GameControl", &gameControl);
-    engine.rootContext()->setContextProperty("Stepcontrol", &stepControl);
-    engine.rootContext()->setContextProperty("Settings", &settings);
-
 
     engine.load(url);
 

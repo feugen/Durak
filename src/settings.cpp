@@ -5,31 +5,35 @@ Settings::Settings(QObject *parent) : QObject(parent)
 
 }
 
-QVariant Settings::getPlayerCount() const
+uint Settings::getPlayerCount() const
 {
-    return m_playersCount;
+    return m_playerCount;
 }
 
-QVariant Settings::getDifficultyLevel() const
+QString Settings::getDifficultyLevel() const
 {
     return m_difficultyLevel;
 }
 
-//Should be QVariant
-void Settings::setPlayerCount(QVariant playersCount)
+void Settings::setPlayerCount(QVariant playerCount)
 {
-    if (m_playersCount == playersCount)
-        return;
-
-    m_playersCount = playersCount;
-    emit playerCountChanged(m_playersCount);
+    if(playerCount.canConvert<uint>())
+    {
+        bool ok = false;
+        const auto result = playerCount.toUInt(&ok);
+        if (m_playerCount == result)
+            return;
+        m_playerCount = result;
+    }
 }
 
 void Settings::setDifficultyLevel(QVariant difficultyLevel)
 {
-    if (m_difficultyLevel == difficultyLevel)
-        return;
-
-    m_difficultyLevel = difficultyLevel;
-    emit difficultyLevelChanged(m_difficultyLevel);
+    if (difficultyLevel.canConvert<QString>())
+    {
+        const auto result = difficultyLevel.toString();
+        if(m_difficultyLevel == result)
+            return;
+        m_difficultyLevel = result;
+    }
 }
