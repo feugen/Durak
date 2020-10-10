@@ -10,9 +10,6 @@ Window {
     visible: true
     title: qsTr("Durak")
 
-    property var difficulty: "Easy"
-    property var numberOfPlayers: "2"
-
     Rectangle{
         id: topMenu
         anchors{
@@ -25,8 +22,8 @@ Window {
             id: layoutItemTop
             Menu{
                 id: menuItem
-                onDifficultyChanged: difficulty = value
-                onPlayerNumberChanged: numberOfPlayers = value
+                onDifficultyChanged: Settings.difficultyLevel = value
+                onPlayerNumberChanged: Settings.playerCount = value
                 onStartGame: GameControl.startGame()
             }
             Info{

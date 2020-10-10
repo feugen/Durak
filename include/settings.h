@@ -2,6 +2,7 @@
 #define SETTINGS_H
 
 #include <QObject>
+#include <QVariant>
 
 class Settings : public QObject
 {
@@ -10,23 +11,23 @@ class Settings : public QObject
 public:
     explicit Settings(QObject *parent = nullptr);
 
-    Q_PROPERTY(int playersCount READ getPlayerCount WRITE setPlayerCount NOTIFY playerCountChanged)
-    Q_PROPERTY(QString difficultyLevel READ getDifficultyLevel WRITE setDifficultyLevel NOTIFY difficultyLevelChanged)
+    Q_PROPERTY(QVariant playerCount READ getPlayerCount WRITE setPlayerCount NOTIFY playerCountChanged)
+    Q_PROPERTY(QVariant difficultyLevel READ getDifficultyLevel WRITE setDifficultyLevel NOTIFY difficultyLevelChanged)
 
-    int getPlayerCount() const;
-    QString getDifficultyLevel() const;
+    QVariant getPlayerCount() const;
+    QVariant getDifficultyLevel() const;
 
 public slots:
-    void setPlayerCount(int playersCount);
-    void setDifficultyLevel(QString difficultyLevel);
+    void setPlayerCount(QVariant playersCount);
+    void setDifficultyLevel(QVariant difficultyLevel);
 
 signals:
-    void playerCountChanged(int playersCount);
-    void difficultyLevelChanged(QString difficultyLevel);
+    void playerCountChanged(QVariant playersCount);
+    void difficultyLevelChanged(QVariant difficultyLevel);
 
 private:
-    int m_playersCount;
-    QString m_difficultyLevel;
+    QVariant m_playersCount;
+    QVariant m_difficultyLevel;
 };
 
 #endif // SETTINGS_H

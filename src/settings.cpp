@@ -5,17 +5,18 @@ Settings::Settings(QObject *parent) : QObject(parent)
 
 }
 
-int Settings::getPlayerCount() const
+QVariant Settings::getPlayerCount() const
 {
     return m_playersCount;
 }
 
-QString Settings::getDifficultyLevel() const
+QVariant Settings::getDifficultyLevel() const
 {
     return m_difficultyLevel;
 }
 
-void Settings::setPlayerCount(int playersCount)
+//Should be QVariant
+void Settings::setPlayerCount(QVariant playersCount)
 {
     if (m_playersCount == playersCount)
         return;
@@ -24,7 +25,7 @@ void Settings::setPlayerCount(int playersCount)
     emit playerCountChanged(m_playersCount);
 }
 
-void Settings::setDifficultyLevel(QString difficultyLevel)
+void Settings::setDifficultyLevel(QVariant difficultyLevel)
 {
     if (m_difficultyLevel == difficultyLevel)
         return;
