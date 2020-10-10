@@ -1,11 +1,7 @@
-#include "ai.h"
-#include "stack.h"
+
 #include "gamecontrol.h"
-#include "player.h"
-#include "playerhandler.h"
 #include "settings.h"
-#include "table.h"
-#include "playingfield.h"
+#include "stepcontrol.h"
 
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
@@ -25,22 +21,14 @@ int main(int argc, char *argv[])
             QCoreApplication::exit(-1);
     }, Qt::QueuedConnection);
 
-    Ai ai;
-    Stack cards;
     GameControl gameControl;
+    StepControl stepControl;
     Settings settings;
-    Table table;
-    PlayingField plyingField;
 
-    qmlRegisterType<Player>("com.example", 1, 0, "Player");
-    qmlRegisterType<PlayerHandler>("com.example", 1, 0, "PlayerHandler");
-
-    engine.rootContext()->setContextProperty("Ai", &ai);
-    engine.rootContext()->setContextProperty("Cards", &cards);
     engine.rootContext()->setContextProperty("GameControl", &gameControl);
+    engine.rootContext()->setContextProperty("Stepcontrol", &stepControl);
     engine.rootContext()->setContextProperty("Settings", &settings);
-    engine.rootContext()->setContextProperty("Table", &table);
-    engine.rootContext()->setContextProperty("PlayingField", &plyingField);
+
 
     engine.load(url);
 
