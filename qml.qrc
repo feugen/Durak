@@ -5,6 +5,7 @@
         <file>src/qml/Info.qml</file>
         <file>src/qml/TurnControl.qml</file>
         <file>src/qml/CardArea.qml</file>
+        <file>src/qml/PlayingField.qml</file>
     </qresource>
     <qresource prefix="/cards">
         <file>data/cards/2C.png</file>

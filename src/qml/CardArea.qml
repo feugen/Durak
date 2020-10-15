@@ -2,9 +2,13 @@ import QtQuick 2.0
 import QtQuick.Layouts 1.15
 
 Rectangle {
+    property int areaHeight: 146
+    property int cardHeight: 132
+    property int cardWidth: 94
+
     id: cardArea
     width: layoutItem.width + (cardArea.border.width + layoutItem.anchors.leftMargin)*2
-    height: 146
+    height: areaHeight
 
     color: "white"
     border.color: "black"
@@ -25,7 +29,7 @@ Rectangle {
             model: 6
             Rectangle{
                 id: rect
-                width: 94; height: 132
+                width: cardWidth; height: cardHeight
                 border.width: 1
                 border.color: "black"
 

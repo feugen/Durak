@@ -43,14 +43,47 @@ Window {
         }
     }
 
-    Rectangle{
+    PlayingField{
         id:playingField
-        width: layoutItemCardArea1.width - 10
-        height: layoutItemCardArea1.width - 10
-        anchors{
-            centerIn: parent
+        Rectangle{
+            id: stackArea
+            readonly property real multiplicator: 1.4
+            width: cardAreaItem0.height * multiplicator; height: cardAreaItem0.height * multiplicator
+            anchors{
+                centerIn: parent
+            }
+            border.color: "black"
+            Rectangle{
+                id: trumpArea
+                height: cardAreaItem0.cardWidth; width: cardAreaItem0.cardHeight
+                anchors{
+                    centerIn: parent
+                }
+                border.color: "black"
+
+                Rectangle{
+                    id: stack
+                    height: cardAreaItem0.cardHeight; width: cardAreaItem0.cardWidth
+                    anchors{
+                        left: trumpArea.left
+                        leftMargin: -20
+                        verticalCenter: trumpArea.verticalCenter
+                    }
+                    border.color: "black"
+
+                    Text {
+                        id: stackCount
+                        property int cardNumber: 0
+                        anchors{
+                            centerIn: parent
+                        }
+                        text: cardNumber
+                        font.pointSize: 28
+                        font.weight: Font.Thin
+                    }
+                }
+            }
         }
-        border.color: "black"
     }
 
     Rectangle{
