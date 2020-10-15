@@ -10,6 +10,8 @@ Window {
     visible: true
     title: qsTr("Durak")
 
+    Component.onCompleted: layoutItem.disableUnuseableCardsSinks()
+
     property var numberOfPLayers: 2
 
     Rectangle{
@@ -81,6 +83,37 @@ Window {
                         font.pointSize: 28
                         font.weight: Font.Thin
                     }
+                }
+            }
+        }
+        GridLayout{
+            id: layoutItem
+            readonly property var unuseableCards: [6, 7, 8, 11, 12, 13]
+            columns: 5
+            rows: 3
+            columnSpacing: 15
+            anchors{
+                centerIn: parent
+            }
+            function disableUnuseableCardsSinks()
+            {
+                for (var card in layoutItem.unuseableCards){
+                    cardSink.itemAt(layoutItem.unuseableCards[card]).border.color = "transparent";
+                    cardSink.itemAt(layoutItem.unuseableCards[card]).color = "transparent"
+                }
+            }
+
+            Repeater{
+                id: cardSink
+                model: 20
+                Rectangle{
+                    id: rect
+                    width: cardAreaItem0.cardWidth; height: cardAreaItem0.cardHeight
+                    border.width: 1
+                    border.color: "black"
+                    color: "lightgrey"
+
+                    //https://stackoverflow.com/questions/30981404/qml-drag-and-drop-free-positioning/30991733
                 }
             }
         }
