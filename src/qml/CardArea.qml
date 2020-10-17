@@ -32,6 +32,7 @@ Rectangle {
                 width: cardWidth; height: cardHeight
                 border.width: 1
                 border.color: "black"
+                property bool dragable: true
 
                 //https://stackoverflow.com/questions/30981404/qml-drag-and-drop-free-positioning/30991733
 
@@ -65,7 +66,7 @@ Rectangle {
                     }
 
                     onReleased: {
-                        if(!rect.caught) {
+                        if(!rect.caught || !rect.dragable) {
                             console.log("Old position")
                             backAnimX.from = rect.x;
                             backAnimX.to = beginDrag.x;
@@ -74,11 +75,14 @@ Rectangle {
                             backAnim.start()
                         }
                         else{
-                            parent.Drag.drop()
-                            console.log("New position")
-                            rect.x = endDrag.x
-                            rect.y = endDrag.y
-                            console.log("x:" + rect.x + " y: " + rect.y)
+                            if(rect.dragable){
+                                parent.Drag.drop()
+                                console.log("New position")
+                                rect.x = endDrag.x
+                                rect.y = endDrag.y
+                                console.log("x:" + rect.x + " y: " + rect.y)
+                                rect.dragable = false
+                            }
                         }
                     }
                 }
