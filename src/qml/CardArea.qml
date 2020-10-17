@@ -30,7 +30,7 @@ Rectangle {
             Rectangle{
                 id: rect
                 width: cardWidth; height: cardHeight
-                border.width: 1
+                border.width: 2
                 border.color: "black"
                 property bool dragable: true
 
@@ -48,9 +48,11 @@ Rectangle {
                 onCaughtChanged: {
                     if(caught){
                         console.log("Caught changed to true")
+                        rect.border.color = "green"
                     }
                     else{
                         console.log("Caught changed to false")
+                        rect.border.color = "black"
                     }
                 }
 
@@ -60,7 +62,7 @@ Rectangle {
                     anchors.fill: parent
                     drag.target: parent
                     onPressed: {
-                        if(!backAnim.running){
+                        if(!backAnim.running && rect.dragable){
                             rect.beginDrag = Qt.point(rect.x, rect.y)
                         }
                     }
@@ -82,6 +84,7 @@ Rectangle {
                                 rect.y = endDrag.y
                                 console.log("x:" + rect.x + " y: " + rect.y)
                                 rect.dragable = false
+                                mouseArea.enabled = false
                             }
                         }
                     }

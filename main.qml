@@ -110,7 +110,7 @@ Window {
                 Rectangle{
                     id: rect
                     width: cardAreaItem0.cardWidth; height: cardAreaItem0.cardHeight
-                    border.width: 1
+                    border.width: 2
                     border.color: "black"
                     color: "lightgrey"
 
@@ -124,23 +124,31 @@ Window {
                         id: dragTarget
                         anchors.centerIn: parent
                         width: parent.width; height: parent.height
-                        property bool dropsAccepted: true
+                        property bool empty: true
 
                         property var cardId: [0] //connect to model
                         keys: [dragTarget.cardId]
 
                         onEntered: {
                             console.log("Entered");
-                            if(dropsAccepted && useableField) drag.source.caught = true;
+                            if(dragTarget.empty && useableField){
+                                drag.source.caught = true;
+                                rect.border.color = "green"
+                            }
                         }
                         onExited: {
-                            console.log("Exit");
-                            if(useableField) drag.source.caught = false;
+                            if(dragTarget.empty && useableField){
+                                console.log("Exit");
+                                drag.source.caught = false;
+                                rect.border.color = "black"
+                            }
                         }
                         onDropped: {
-                            console.log("Dropped");
-                            drag.source.endDrag = Qt.point(rect.x - rect.offsetDrop, rect.y + rect.offsetDrop - playingField.height)
-                            dropsAccepted = false
+                            if(useableField){
+                                console.log("Dropped");
+                                drag.source.endDrag = Qt.point(rect.x - rect.offsetDrop, rect.y + rect.offsetDrop - playingField.height)
+                                dragTarget.empty = false
+                            }
                         }
                     }
                 }
