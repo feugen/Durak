@@ -10,7 +10,7 @@ Window {
     visible: true
     title: qsTr("Durak")
 
-    Component.onCompleted: layoutItem.disableUnuseableCardsSinks()
+    Component.onCompleted: layoutItem.disableUnuseableCardSinks()
 
     property var numberOfPLayers: 2
 
@@ -95,11 +95,12 @@ Window {
             anchors{
                 centerIn: parent
             }
-            function disableUnuseableCardsSinks()
+            function disableUnuseableCardSinks()
             {
                 for (var card in layoutItem.unuseableCards){
                     cardSink.itemAt(layoutItem.unuseableCards[card]).border.color = "transparent";
-                    cardSink.itemAt(layoutItem.unuseableCards[card]).color = "transparent"
+                    cardSink.itemAt(layoutItem.unuseableCards[card]).color = "transparent";
+                    cardSink.itemAt(layoutItem.unuseableCards[card]).useableField = false;
                 }
             }
 
@@ -113,7 +114,35 @@ Window {
                     border.color: "black"
                     color: "lightgrey"
 
+                    property bool useableField: true
+                    property bool bidMode: false
+                    property int offsetDrop: bidMode ? 10 : 0
+
                     //https://stackoverflow.com/questions/30981404/qml-drag-and-drop-free-positioning/30991733
+
+                    DropArea{
+                        id: dragTarget
+                        anchors.centerIn: parent
+                        width: parent.width; height: parent.height
+                        property bool dropsAccepted: true
+
+                        property var cardId: [0] //connect to model
+                        keys: [dragTarget.cardId]
+
+                        onEntered: {
+                            console.log("Entered");
+                            if(dropsAccepted && useableField) drag.source.caught = true;
+                        }
+                        onExited: {
+                            console.log("Exit");
+                            if(useableField) drag.source.caught = false;
+                        }
+                        onDropped: {
+                            console.log("Dropped");
+                            drag.source.endDrag = Qt.point(rect.x - rect.offsetDrop, rect.y + rect.offsetDrop - playingField.height)
+                            dropsAccepted = false
+                        }
+                    }
                 }
             }
         }
